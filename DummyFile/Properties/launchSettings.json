@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "DummyFile": {
+      "commandName": "Project",
+      "commandLineArgs": "\"C:\\test\\dummy.txt\" 100"
+    }
+  }
+}
