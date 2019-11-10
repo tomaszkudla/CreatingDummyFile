@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 
@@ -10,6 +11,7 @@ namespace DummyFile
         {
             try
             {
+                var stopwatch = Stopwatch.StartNew();
                 ParseParams(args, out string path, out int sizeMB);
                 if (sizeMB <= 0)
                 {
@@ -17,7 +19,8 @@ namespace DummyFile
                 }
 
                 GenerateFileWithRandom(path, sizeMB);
-                Console.WriteLine("Done");
+                stopwatch.Stop();
+                Console.WriteLine($"Done in {stopwatch.ElapsedMilliseconds} ms");
             }
             catch (Exception ex)
             {
