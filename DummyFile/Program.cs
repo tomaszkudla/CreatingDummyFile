@@ -36,15 +36,15 @@ namespace DummyFile
 
         private static void GenerateFileWithRandom(string path, int sizeMB)
         {
-            var count = (sizeMB * 1024 * 1024);
-            using (var streamWriter = new StreamWriter(path))
+            using (var fileStream = new FileStream(path, FileMode.Create))
+            using (var binaryWriter = new BinaryWriter(fileStream))
             {
                 Random random = new Random();
-                for (int i = 0; i < count; i++)
+                for (int i = 0; i < sizeMB; i++)
                 {
-                    var num = random.Next(0, 127);
-                    var ch = (char)num;
-                    streamWriter.Write(ch);
+                    var part = new byte[1024 * 1024];
+                    random.NextBytes(part);
+                    binaryWriter.Write(part);
                 }
             }
         }
